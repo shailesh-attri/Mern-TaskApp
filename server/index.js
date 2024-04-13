@@ -9,13 +9,10 @@ import taskRefRoute from "./Routes/taskRef.route.js";
 import bodyParser from 'body-parser';
 dotenv.config();
 const app = express();
-const corsOptions = {
-  origin: ["https://mern-task-app-gamma.vercel.app", "http://localhost:3000"],
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-};
+
 
 // Set up CORS globally for all routes
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Other middleware and routes
 app.use(bodyParser.json({ limit: '50mb' }));
