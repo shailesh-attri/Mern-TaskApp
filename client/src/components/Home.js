@@ -46,7 +46,7 @@ const Home = () => {
     </div>
     :
     <div className={`bg-gray-100 text-gray-900 ${theme === 'dark' ? 'dark:bg-gray-900 dark:textColor' : 'light:bg-gray-900 light:textColor'} flex flex-col items-center justify-center gap-8 p-8 h-[100vh] w-full`}>
-        <h1 className="text-[5.5rem] font-bold mb-6 text-gray-100 w-full text-center">
+        <h1 className="text-[5.5rem] font-bold mb-6 text-gray-100 w-full text-center leading-tight">
               Please login first or Register an account.
         </h1>
         <div className="flex justify-center space-x-8">

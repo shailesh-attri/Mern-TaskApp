@@ -12,7 +12,7 @@ const Landing = () => {
         </div>
         <div className="hero h-[714px] w-full flex items-center justify-center">
           <div className="max-w-7xl text-center">
-            <h1 className="text-[5.5rem] sm:text-[4rem] font-bold mb-6 text-gray-100 w-full flex items-center justify-center md:justify-center md:text-start">
+            <h1 className=" text-[5.5rem] sm:text-[4rem] font-bold mb-6 text-gray-100 w-full flex items-center justify-center md:justify-center md:text-start leading-tight">
               Achieve More, Stress Less with Seamless Task Management
             </h1>
             <p className="mb-8 text-[2rem] text-gray-400 min-w-[50%] ">
