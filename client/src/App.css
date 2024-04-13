@@ -1,0 +1,17 @@
+*{
+  box-sizing: border-box;
+  margin: 0;padding: 0;
+  
+}
+body::-webkit-scrollbar{
+  opacity: 0;
+}
+div::-webkit-scrollbar{
+  display: none;
+}
+.App{
+  background-image: url('./assets/tiltimg.png');
+  background-size:cover;
+ 
+}
+

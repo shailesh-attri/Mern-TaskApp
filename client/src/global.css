@@ -1,0 +1,38 @@
+
+    .dark\:bg-gray-900 {
+      /* background-color: #181818; */
+      background-color: transparent;
+      /* #212121 */
+      /* #323232 */
+
+    }
+    .dark\:bgPlate{
+        background-color: rgba(55, 65, 81, 0.5);
+        /* background-color: #0B0D17; */
+        /* background-color: rgba(255,255,255,1); */
+    }
+    .dark\:bgBox{
+        background-color:  rgba(55, 65, 81, 0.8);
+    }
+  
+    .dark\:textColor {
+      color: #e4e5f1;
+    }
+  
+  
+    .light\:bgPlate{
+      background-color:  #fafbfc;
+  }
+    .light\:bgBox{
+      background-color:  #e4e5f1;
+  }
+
+    .light\:bg-gray-900 {
+      background-color: #e4e5f1;
+    }
+  
+    .light\:textColor {
+      color: #447aef;
+    }
+  
+  
