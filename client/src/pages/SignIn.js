@@ -77,18 +77,18 @@ const SignIn = () => {
         </div>
         <div className="mt-5">
           <form action="" onSubmit={handleSubmit}>
-            <div className="relative mt-6">
+            <div className="relative mt-6 ">
             <input
                 type="text"
                 name="username"
                 id="username"
                 placeholder="Username"
-                className="peer mt-1 w-full border-b-2 border-gray-500 px-0 py-1 bg-transparent placeholder:text-transparent focus:border-gray-500 focus:outline-none text-white"
+                className="peer mt-1 w-full border-b-2 border-gray-500 px-0 py-1 bg-transparent placeholder:text-transparent focus:border-gray-500 focus:outline-none text-white "
                 autocomplete="NA"
               />
               <label
                 for="username"
-                className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm text-gray-200 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-200 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-200"
+                className="pointer-events-none absolute top-0 left-0 origin-left -translate-y-1/2 transform text-sm  text-gray-200 opacity-75 transition-all duration-100 ease-in-out peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-200 peer-focus:top-0 peer-focus:pl-0 peer-focus:text-sm peer-focus:text-gray-200"
               >
                 Username
               </label>
@@ -135,7 +135,7 @@ const SignIn = () => {
               </button>
             }
             </div>
-            <p className="text-center text-sm text-gray-200">
+            <p className="text-center text-2xl text-gray-200">
               Don&#x27;t have an account yet?
               <Link
                 to="/signup"

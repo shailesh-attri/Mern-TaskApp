@@ -15,7 +15,7 @@ function App() {
         theme === "dark"
           ? ""
           : "light:bg-gray-900 light:textColor"
-      } flex items-center justify-between gap-8 p-8 h-[100vh] sm:px-2`}
+      } flex items-center justify-between gap-8 p-8 h-[100vh] sm:px-2 sm:text-3xl`}
     >
       <Router>
         <Routes>

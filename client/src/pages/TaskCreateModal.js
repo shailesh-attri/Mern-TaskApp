@@ -61,7 +61,7 @@ export const TaskCreateModal = ({ setOpen, isOpen, theme, sendData, thisUser,tog
         <div
           className={`fixed z-50 inset-0 overflow-y-auto flex items-center justify-center ${
             isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-          } transition-opacity duration-300`}
+          } transition-opacity duration-300 `}
         >
           <div className="fixed inset-0 transition-opacity" aria-hidden="true">
             <div className="absolute inset-0 bg-gray-800 opacity-75"></div>

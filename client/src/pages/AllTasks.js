@@ -153,13 +153,13 @@ const AllTasks = ({ isOpen, toggle }) => {
               onClick={() => toggleImportant(task)}
             >
               {task.isImportant === true ? (
-                <FaStar
+                <FaStar className="sm:text-4xl"
                   style={{
                     color: task.isImportant === true ? "#05ED98" : "",
                   }}
                 />
               ) : (
-                <CiStar></CiStar>
+                <CiStar className="sm:text-4xl"></CiStar>
               )}
             </div>
           </div>
@@ -188,11 +188,12 @@ const AllTasks = ({ isOpen, toggle }) => {
                       handleEdit(task);
                       setUpdateModal((p) => !p);
                     }}
+                    className="sm:text-4xl"
                   ></CiEdit>
                 </span>
               )}
               <span className="Delete flex items-center justify-center gap-2 cursor-pointer">
-                <MdDelete onClick={() => deleteTask(task._id)}></MdDelete>
+                <MdDelete onClick={() => deleteTask(task._id)} className="sm:text-4xl"></MdDelete>
               </span>
             </div>
           </div>
