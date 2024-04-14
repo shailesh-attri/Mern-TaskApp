@@ -8,7 +8,6 @@ import { FaStar } from "react-icons/fa";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { handleErrorCode } from "../utils/errorCode";
-import { TimeLeft } from "../utils/TimeLeft";
 import { Description } from "./Description";
 import { TaskCreateModal } from "./TaskCreateModal";
 import { TaskEditModal } from "./TaskEditModal";
@@ -19,6 +18,7 @@ import {
   markCompleted,
   markImportant,
 } from "../utils/backendApi";
+import { calculateDeadline } from "../utils/calculateDeadline";
 
 const AllTasks = ({ isOpen, toggle }) => {
   const { theme } = useTheme();
@@ -112,6 +112,8 @@ const AllTasks = ({ isOpen, toggle }) => {
     const day = date.getDate();
     return `${day}-${month}-${year}`;
   }
+  
+  
 
   return (
     <>
@@ -168,7 +170,7 @@ const AllTasks = ({ isOpen, toggle }) => {
             <span className="date">
               {extractDateAndTimeFromCreatedAt(task.createdAt)}
             </span>
-            <TimeLeft createdAt={task.createdAt} deadline={task.deadline} />
+            <span className={`${calculateDeadline(task.deadline) === "Deadline passed" ? "text-red-500 font-bold" : ""}${calculateDeadline(task.deadline) === "Deadline for today" ? "text-yellow-600 font-bold" : ""}`}>{calculateDeadline(task.deadline)}</span>
           </div>
           <div className="buttons flex items-center justify-between w-full ">
             <span

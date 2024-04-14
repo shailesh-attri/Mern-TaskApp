@@ -3,8 +3,8 @@ import { useTheme } from "../ThemeContext";
 import { TaskContext } from "../utils/taskContext";
 import { FaStar } from "react-icons/fa";
 import { CiStar } from "react-icons/ci";
-import { TimeLeft } from "../utils/TimeLeft";
 import { Description } from "./Description";
+import { calculateDeadline } from "../utils/calculateDeadline";
 const ImportantTask = () => {
   const { theme } = useTheme();
   const { userTask } = useContext(TaskContext);
@@ -55,7 +55,7 @@ const ImportantTask = () => {
             <span className="date">
               {extractDateAndTimeFromCreatedAt(task.createdAt)}
             </span>
-            <TimeLeft createdAt={task.createdAt} deadline={task.deadline} />
+            <span className={`${calculateDeadline(task.deadline) === "Deadline passed" ? "text-red-500 font-bold" : ""}${calculateDeadline(task.deadline) === "Deadline for today" ? "text-yellow-600 font-bold" : ""}`}>{calculateDeadline(task.deadline)}</span>
           </div>
       <div className="buttons flex items-center justify-between w-full ">
         <span

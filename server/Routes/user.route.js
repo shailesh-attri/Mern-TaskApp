@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/register', userController.register)
 router.post('/login', userController.login)
 router.patch('/changeAvatar/:id',upload.single('dpImage'), userController.changeAvatar)
-router.get('/getUser/:id', userController.getUser)
+router.get('/getUser/',verifyToken, userController.getUser)
 
 
 export default router

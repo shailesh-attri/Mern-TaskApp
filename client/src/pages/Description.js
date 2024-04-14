@@ -4,7 +4,7 @@ export const Description = ({ text }) => {
     return (
       <div className="description">
         {truncatedText}
-        {words.length > 10 && "..."}
+        {words.length > 8 && "..."}
       </div>
     );
   };

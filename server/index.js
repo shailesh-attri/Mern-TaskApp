@@ -17,7 +17,7 @@ const corsOptions = {
   origin: ['https://mern-task-app-gamma.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 };
-app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // Other middleware and routes
 app.use(bodyParser.json({ limit: '50mb' }));
