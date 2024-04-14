@@ -30,7 +30,7 @@ const SignIn = () => {
             if (res.status === 200) {
               setLoading(false)
               setLoginSuccess(res.data.message);
-              // sendUserData(res.data.userDetails);
+              sendUserData(res.data);
               navigate('/dashboard');
             } else {
               setLoading(false)

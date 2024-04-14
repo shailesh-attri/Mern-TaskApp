@@ -71,7 +71,7 @@ const Home = () => {
           }
         }
         getUser()
-      },[])
+      },[thisUser])
   return (
     thisUser ?  
     <div className={` bg-gray-100 text-gray-900 ${theme === 'dark' ? 'dark:bg-gray-900 dark:textColor' : 'light:bg-gray-900 light:textColor'} flex items-center justify-between gap-8 p-8 h-[100vh] w-full sm:px-0`}>
