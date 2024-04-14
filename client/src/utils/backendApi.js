@@ -10,4 +10,3 @@ export const markImportant = `${api}/task/markImportant`
 export const markCompleted = `${api}/task/markCompleted`
 export const getTask = `${api}/taskRef/getTask`
 export const getUser = `${api}/user/getUser`
-

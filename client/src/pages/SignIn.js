@@ -18,12 +18,14 @@ const SignIn = () => {
             "username":formData.get("username"),
             "password":formData.get("password"),
         }
-        console.log(formDataObject);
+        
         
         const handleLogin = async ()=>{
           setLoading(true)
           try {
-            const res = await axios.post(loginRoute, formDataObject);
+            const res = await axios.post(loginRoute, formDataObject, {
+              withCredentials: true // Include credentials in the request
+            })
             if (res.status === 200) {
               setLoading(false)
               setLoginSuccess(res.data.message);

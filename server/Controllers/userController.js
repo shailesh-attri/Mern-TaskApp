@@ -63,6 +63,8 @@ const userController = {
         res.cookie("userToken", token, {
           httpOnly: true,
           expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+          secure: true,
+          sameSite: 'None'
         });
 
         // Send success response

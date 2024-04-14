@@ -25,7 +25,9 @@ const SignUp = () => {
       const formData = new FormData(e.target);
       const password = formData.get("password");
       try {
-        const res = await axios.post(registerRoute, { username, password });
+        const res = await axios.post(registerRoute, { username, password },{
+          withCredentials: true // Include credentials in the request
+        });
         if (res.status === 200) {
           setLoginSuccess(res.data.message);
           sendUserData(res.data.otherDetails);

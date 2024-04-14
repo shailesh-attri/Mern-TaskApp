@@ -16,7 +16,9 @@ const app = express();
 const corsOptions = {
   origin: ['https://mern-task-app-gamma.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  credentials: true 
 };
+
 app.use(cors(corsOptions));
 
 // Other middleware and routes
