@@ -81,7 +81,7 @@ const userController = {
     res.status(200).json({ message: 'Sign-out successful' });
   },
   getUser: async (req, res) => {
-    const userId = req.params.id
+    const userId = req.userID
     try {
       const user = await userModel.findById(userId);
       if (!user) {
