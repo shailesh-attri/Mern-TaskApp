@@ -46,7 +46,7 @@ const AllTasks = ({ isOpen, toggle }) => {
           sendTaskData(res.data.userTask.allTask);
         }
       } catch (error) {
-        console.log("Error in fetching task: " + error.message);
+        console.log("Error in fetching task: " + error);
       }
     };
     handleTask();
