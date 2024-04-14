@@ -13,12 +13,12 @@ const app = express();
 
 
 // Set up CORS globally for all routes
-const isProduction = process.env.NODE_ENV === 'production';
+
 
 const corsOptions = {
   origin: ['https://mern-task-app-gamma.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  credentials: isProduction // Set credentials to true only in production
+  credentials: true // Set credentials to true only in production
 };
 
 app.use(cors(corsOptions));

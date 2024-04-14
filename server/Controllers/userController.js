@@ -65,12 +65,11 @@ const userController = {
           const cookieOptions = {
             httpOnly: true,
             expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // 10 days
-            sameSite: 'None' // Always use 'None' for cross-origin requests
+            sameSite: 'None',
+            secure:true
           };
 
-          if (isProduction) {
-            cookieOptions.secure = true; // Set secure flag in production
-          }
+          
 
           res.cookie("userToken", token, cookieOptions);
 
