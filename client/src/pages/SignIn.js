@@ -4,6 +4,7 @@ import {loginRoute} from '../utils/backendApi'
 import axios from "axios";
 import { TaskContext } from "../utils/taskContext";
 import { Oval } from 'react-loader-spinner'
+import { getUser } from "../utils/backendApi";
 const SignIn = () => {
     const {sendUserData} = useContext(TaskContext)
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ const SignIn = () => {
             if (res.status === 200) {
               setLoading(false)
               setLoginSuccess(res.data.message);
-              sendUserData(res.data.userDetails);
+              // sendUserData(res.data.userDetails);
               navigate('/dashboard');
             } else {
               setLoading(false)
@@ -64,7 +65,49 @@ const SignIn = () => {
             }
           }
         }
+        const getUser = async ()=>{
+          setLoading(true)
+          try {
+            const res = await axios.get(getUser)
+            if (res.status === 200) {
+              
+              sendUserData(res.data.userDetails);
+            } else {
+              
+              // Handle unexpected status codes here
+              console.error('Unexpected status code:', res.status);
+              setLoginFailed("Unexpected status code")
+            }
+          } catch (error) {
+            setLoading(false)
+            if (error.response) {
+              // The request was made and the server responded with a status code
+              // that falls out of the range of 2xx
+              console.error('Error response from server:', error.response.status);
+              setLoginFailed('Error response from server')
+              // Handle different status codes as needed
+              if (error.response.status === 404) {
+                console.error('User not found');
+                setLoginFailed('User not found')
+              } else if (error.response.status === 401) {
+                console.error('Invalid password');
+                setLoginFailed('Invalid password')
+              } else {
+                console.error('Unexpected error:', error.response.data);
+              }
+            } else if (error.request) {
+              // The request was made but no response was received
+              console.error('No response received:', error.request);
+              setLoginFailed('No response received')
+            } else {
+              // Something happened in setting up the request that triggered an Error
+              console.error('Error setting up the request:', error.message);
+            }
+          }
+        }
+
         handleLogin()
+        getUser()
     }
     
 

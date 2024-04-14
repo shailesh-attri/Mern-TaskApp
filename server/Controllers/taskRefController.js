@@ -2,8 +2,7 @@ import { userModel } from "../Models/user.model.js";
 import { taskRefModel } from "../Models/taskRef.model.js";
 const taskRefController = {
   getTask: async (req, res) => {
-    const userId = req.userID
-    console.log(userId);
+    const userId = req.params.id
     try {
       const currentUser = await taskRefModel.findOne({ creator: userId });
       if (!currentUser) {

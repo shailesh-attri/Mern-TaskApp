@@ -60,7 +60,7 @@ const userController = {
         const token = generateTokenAndSetCookie(User._doc._id, time);
 
         // Set the token in the response cookie
-        const isProduction = process.env.NODE_ENV === 'production';
+        
 
           const cookieOptions = {
             httpOnly: true,

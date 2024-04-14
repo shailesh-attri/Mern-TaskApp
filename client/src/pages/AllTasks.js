@@ -41,7 +41,7 @@ const AllTasks = ({ isOpen, toggle }) => {
     const handleTask = async () => {
       try {
         console.log(getTask);
-        const res = await axios.get(getTask)
+        const res = await axios.get(`${getTask}/${thisUser._id}`)
         console.log(res);
         if(res.status === 200){
           
