@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {loginRoute} from '../utils/backendApi'
 import axios from "axios";
@@ -6,7 +6,7 @@ import { TaskContext } from "../utils/taskContext";
 import { Oval } from 'react-loader-spinner'
 import { getUser } from "../utils/backendApi";
 const SignIn = () => {
-    const {sendUserData} = useContext(TaskContext)
+    const {thisUser,sendUserData} = useContext(TaskContext)
     const navigate = useNavigate();
     const [loginSuccess, setLoginSuccess] = useState('')
     const [loginFailed, setLoginFailed] = useState('')
@@ -28,10 +28,10 @@ const SignIn = () => {
               withCredentials: true // Include credentials in the request
             })
             if (res.status === 200) {
-              setLoading(false)
-              setLoginSuccess(res.data.message);
-              sendUserData(res.data);
-              navigate('/dashboard');
+              
+              setLoginSuccess(res.data);
+              // sendUserData(res.data);
+              // navigate('/dashboard');
             } else {
               setLoading(false)
               // Handle unexpected status codes here
@@ -70,6 +70,57 @@ const SignIn = () => {
         handleLogin()
         
     }
+    useEffect(()=>{
+      console.log("GetUser request is working");
+      const getUser = async ()=>{
+        const cookies = document.cookie;
+        if (!cookies) {
+          console.error('No cookies found');
+          return;
+        }
+        try {
+          const res = await axios.get(getUser, {
+            headers: {
+              Cookie: cookies
+            }
+          });
+          if (res.status === 200) {
+            navigate('/dashboard');
+            setLoading(false)
+            sendUserData(res.data.userDetails);
+          } else {
+            
+            // Handle unexpected status codes here
+            console.error('Unexpected status code:', res.status);
+          }
+        } catch (error) {
+          if (error.response) {
+            // The request was made and the server responded with a status code
+            // that falls out of the range of 2xx
+            console.error('Error response from server:', error.response.status);
+            
+            // Handle different status codes as needed
+            if (error.response.status === 404) {
+              console.error('User not found');
+             
+            } else if (error.response.status === 401) {
+              console.error('Invalid password');
+            
+            } else {
+              console.error('Unexpected error:', error.response.data);
+            }
+          } else if (error.request) {
+            // The request was made but no response was received
+            console.error('No response received:', error.request);
+            
+          } else {
+            // Something happened in setting up the request that triggered an Error
+            console.error('Error setting up the request:', error.message);
+          }
+        }
+      }
+      getUser()
+    },[loginSuccess])
     
 
     
@@ -151,7 +202,7 @@ const SignIn = () => {
               </Link>
               .
             </p>
-            {loginSuccess && <p className="text-center text-sm sm:text-2xl text-green-500 font-bold">{loginSuccess}</p>}
+            {/* {loginSuccess && <p className="text-center text-sm sm:text-2xl text-green-500 font-bold">{loginSuccess}</p>} */}
             {loginFailed && <p className="text-center text-sm sm:text-3xl text-red-500 font-bold py-4">{loginFailed}</p>}
           </form>
         </div>
