@@ -26,7 +26,11 @@ const Home = () => {
         const getUser = async ()=>{
           
           try {
-            const res = await axios.get(getUser)
+            const res = await axios.get(getUser, {
+              headers: {
+                Cookie: `userToken=${document.cookie.replace(/(?:(?:^|.*;\s*)userToken\s*=\s*([^;]*).*$)|^.*$/, "$1")}`
+              }
+            });
             if (res.status === 200) {
               
               sendUserData(res.data.userDetails);
