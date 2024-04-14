@@ -60,12 +60,19 @@ const userController = {
         const token = generateTokenAndSetCookie(User._doc._id, time);
 
         // Set the token in the response cookie
-        res.cookie("userToken", token, {
-          httpOnly: true,
-          expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
-          secure: true,
-          sameSite: 'None'
-        });
+        const isProduction = process.env.NODE_ENV === 'production';
+
+          const cookieOptions = {
+            httpOnly: true,
+            expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // 10 days
+            sameSite: 'None' // Always use 'None' for cross-origin requests
+          };
+
+          if (isProduction) {
+            cookieOptions.secure = true; // Set secure flag in production
+          }
+
+          res.cookie("userToken", token, cookieOptions);
 
         // Send success response
         res.status(200).json({ message: "Login successfully", userDetails });

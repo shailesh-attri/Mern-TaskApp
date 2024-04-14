@@ -40,7 +40,9 @@ const AllTasks = ({ isOpen, toggle }) => {
   useEffect(() => {
     const handleTask = async () => {
       try {
+        console.log(getTask);
         const res = await axios.get(getTask)
+        console.log(res);
         if(res.status === 200){
           
           sendTaskData(res.data.userTask.allTask);
@@ -50,7 +52,7 @@ const AllTasks = ({ isOpen, toggle }) => {
       }
     };
     handleTask();
-  }, [taskData, notify]);
+  }, [taskData, notify,thisUser]);
 
   const toggleImportant = async (task) => {
     try {
