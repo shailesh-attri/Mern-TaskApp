@@ -16,7 +16,7 @@ const app = express();
 const isProduction = process.env.NODE_ENV === 'production';
 
 const corsOptions = {
-  origin: isProduction ? ['https://mern-task-app-gamma.vercel.app'] : ['http://localhost:3000'],
+  origin: ['https://mern-task-app-gamma.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   credentials: isProduction // Set credentials to true only in production
 };
