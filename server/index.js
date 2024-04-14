@@ -14,7 +14,7 @@ const app = express();
 
 // Set up CORS globally for all routes
 const corsOptions = {
-  origin: ['https://ern-task-app-gamma.vercel.app', 'http://localhost:3000'],
+  origin: ['https://mern-task-app-gamma.vercel.app', 'http://localhost:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
 };
 app.use(cors(corsOptions));
