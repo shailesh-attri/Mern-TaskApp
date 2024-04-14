@@ -11,8 +11,13 @@ dotenv.config();
 const app = express();
 
 
+
 // Set up CORS globally for all routes
-app.use(cors());
+const corsOptions = {
+  origin: ['https://ern-task-app-gamma.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+};
+app.use(cors(corsOptions));
 
 // Other middleware and routes
 app.use(bodyParser.json({ limit: '50mb' }));

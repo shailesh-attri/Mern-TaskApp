@@ -137,7 +137,7 @@ const SignUp = () => {
               .
             </p>
             {loginSuccess && <p className="text-center text-sm text-green-500 font-bold">{loginSuccess}</p>}
-            {loginFailed && <p className="text-center text-sm text-red-700 font-bold py-4">{loginFailed}</p>}
+            {loginFailed && <p className="text-center text-sm sm:text-2xl text-red-500 font-bold py-4">{loginFailed}</p>}
           </form>
         </div>
       </div>
