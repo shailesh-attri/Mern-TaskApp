@@ -23,12 +23,17 @@ const Home = () => {
         
       }
       useEffect(()=>{
+        console.log("GetUser request is working");
         const getUser = async ()=>{
-          
+          const cookies = document.cookie;
+          if (!cookies) {
+            console.error('No cookies found');
+            return;
+          }
           try {
             const res = await axios.get(getUser, {
               headers: {
-                Cookie: `userToken=${document.cookie.replace(/(?:(?:^|.*;\s*)userToken\s*=\s*([^;]*).*$)|^.*$/, "$1")}`
+                Cookie: cookies
               }
             });
             if (res.status === 200) {
