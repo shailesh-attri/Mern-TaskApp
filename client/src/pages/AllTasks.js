@@ -20,6 +20,7 @@ import {
 } from "../utils/backendApi";
 import { calculateDeadline } from "../utils/calculateDeadline";
 
+
 const AllTasks = ({ isOpen, toggle }) => {
   const { theme } = useTheme();
   const { userTask, thisUser, sendTaskData } = useContext(TaskContext);
@@ -36,12 +37,27 @@ const AllTasks = ({ isOpen, toggle }) => {
     });
     setTaskData(data);
   };
+  const getCookie = (name) => {
+    const cookieName = `${name}=`;
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+      if (cookie.trim().startsWith(cookieName)) {
+        return cookie.substring(cookieName.length, cookie.length);
+      }
+    }
+    return '';
+  };
 
   useEffect(() => {
     const handleTask = async () => {
       try {
         console.log(getTask);
-        const res = await axios.get(`${getTask}/${thisUser._id}`)
+        const token = getCookie('userToken');
+        const res = await axios.get(getTask,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        })
         console.log(res);
         if(res.status === 200){
           

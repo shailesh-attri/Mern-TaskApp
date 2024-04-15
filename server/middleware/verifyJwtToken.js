@@ -3,8 +3,9 @@ import jwt from 'jsonwebtoken';
 const verifyToken = (req, res, next) => {
     try {
         // Extract token from browser cookie
-        const token = req.cookies?.userToken || req.header("Authorization")?.replace("Bearer ", "");
-
+        // const token = req.cookies?.userToken;
+        const token = req.headers.authorization?.split(' ')[1];
+        
         if (!token) {
             return res.status(400).json({ message: "Token not found" });
         }

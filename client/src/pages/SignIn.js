@@ -4,9 +4,8 @@ import {loginRoute} from '../utils/backendApi'
 import axios from "axios";
 import { TaskContext } from "../utils/taskContext";
 import { Oval } from 'react-loader-spinner'
-import { getUser } from "../utils/backendApi";
 const SignIn = () => {
-    const {thisUser,sendUserData} = useContext(TaskContext)
+    const {sendUserData} = useContext(TaskContext)
     const navigate = useNavigate();
     const [loginSuccess, setLoginSuccess] = useState('')
     const [loginFailed, setLoginFailed] = useState('')
@@ -24,14 +23,16 @@ const SignIn = () => {
         const handleLogin = async ()=>{
           setLoading(true)
           try {
-            const res = await axios.post(loginRoute, formDataObject, {
-              withCredentials: true // Include credentials in the request
-            })
+            const res = await axios.post(loginRoute, formDataObject)
+            const token = res.data.token;
+
+              // Set the token as a cookie
+              document.cookie = `userToken=${token}; Max-Age=3600; Secure; SameSite=None`; 
             if (res.status === 200) {
               
               setLoginSuccess(res.data);
-              // sendUserData(res.data);
-              // navigate('/dashboard');
+              sendUserData(res.data);
+              navigate('/dashboard');
             } else {
               setLoading(false)
               // Handle unexpected status codes here
@@ -65,53 +66,7 @@ const SignIn = () => {
             }
           }
         }
-        const getUser = async ()=>{
-          console.log("GetUser request is working");
-          const cookies = document.cookie;
-          if (!cookies) {
-            console.error('No cookies found');
-            return;
-          }
-          try {
-            const res = await axios.get(getUser);
-            if (res.status === 200) {
-              navigate('/dashboard');
-              setLoading(false)
-              sendUserData(res.data.userDetails);
-            } else {
-              
-              // Handle unexpected status codes here
-              console.error('Unexpected status code:', res.status);
-            }
-          } catch (error) {
-            if (error.response) {
-              // The request was made and the server responded with a status code
-              // that falls out of the range of 2xx
-              console.error('Error response from server:', error.response.status);
-              
-              // Handle different status codes as needed
-              if (error.response.status === 404) {
-                console.error('User not found');
-               
-              } else if (error.response.status === 401) {
-                console.error('Invalid password');
-              
-              } else {
-                console.error('Unexpected error:', error.response.data);
-              }
-            } else if (error.request) {
-              // The request was made but no response was received
-              console.error('No response received:', error.request);
-              
-            } else {
-              // Something happened in setting up the request that triggered an Error
-              console.error('Error setting up the request:', error.message);
-            }
-          }
-        }
-        if(loginSuccess){
-          getUser()
-        }
+       
         handleLogin()
         
     }

@@ -62,19 +62,19 @@ const userController = {
         // Set the token in the response cookie
         
 
-          const cookieOptions = {
-            httpOnly: true,
-            expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // 10 days
-            sameSite: 'None',
-            secure:true
-          };
+          // const cookieOptions = {
+          //   httpOnly: true,
+          //   expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000), // 10 days
+          //   sameSite: 'None',
+          //   secure:false
+          // };
 
           
 
-          res.cookie("userToken", token, cookieOptions);
+          // res.cookie("userToken", token, cookieOptions);
 
         // Send success response
-        res.status(200).json({ message: "Login successfully", userDetails });
+        res.status(200).json({ message: "Login successfully", token });
       }
     } catch (error) {
       res
@@ -90,12 +90,14 @@ const userController = {
   },
   getUser: async (req, res) => {
     const userId = req.userID
+    
     try {
       const user = await userModel.findById(userId);
       if (!user) {
         return res.status(404).send({ message: "user not found" });
       }
       const {password, ...otherDetails} = user._doc
+      
       res.status(200).json({ otherDetails})
     } catch (error) {
       console.log("Inter server error: " + error);

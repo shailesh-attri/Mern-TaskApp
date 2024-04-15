@@ -9,7 +9,7 @@ import { changeAvatar } from "../utils/backendApi";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
 import toast, { Toaster } from "react-hot-toast";
-const Sidebar = ({ sendMenu, thisUser, sendUserData }) => {
+const Sidebar = ({ sendMenu, userData, sendUserData }) => {
   const { theme } = useTheme();
   const [selectedMenu, setSelectedMenu] = useState("All Tasks");
   const [changePicture, setChangePicture] = useState(false);
@@ -61,7 +61,7 @@ const Sidebar = ({ sendMenu, thisUser, sendUserData }) => {
           // Make a request to upload the image using Axios
           
           const res = await axios.patch(
-            `${changeAvatar}/${thisUser._id}`,
+            `${changeAvatar}/${userData._id}`,
             { dpImage: file },
             {
               headers: {
@@ -115,8 +115,8 @@ const Sidebar = ({ sendMenu, thisUser, sendUserData }) => {
           >
             <img
               src={
-                inputFile || (thisUser && thisUser?.avatarUrl)
-                  ? inputFile || thisUser?.avatarUrl
+                inputFile || (userData && userData?.avatarUrl)
+                  ? inputFile || userData?.avatarUrl
                   : Pic1
               }
               alt=""
@@ -148,7 +148,7 @@ const Sidebar = ({ sendMenu, thisUser, sendUserData }) => {
             )}
           </div>
           <span className="w-full font-bold text-2xl pl-4">
-            {thisUser?.username}
+            {userData?.username}
           </span>
         </div>
         <div className="menu flex flex-col items-center justify-start gap-2 w-full transition-all 0.2s ease-linear">
