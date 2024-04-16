@@ -30,13 +30,13 @@ const userController = {
       const token = generateTokenAndSetCookie(savedUser._doc._id, time);
 
       // Set the token in the response cookie
-      res.cookie("userToken", token, {
-        httpOnly: true,
-        expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
-      });
+      // res.cookie("userToken", token, {
+      //   httpOnly: true,
+      //   expires: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+      // });
 
       // Send success response
-      res.status(200).json({ message: "Account registered successfully",otherDetails });
+      res.status(200).json({ message: "Account registered successfully",token });
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: "User registration failed" });

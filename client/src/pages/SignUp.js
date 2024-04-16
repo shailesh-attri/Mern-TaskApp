@@ -25,9 +25,11 @@ const SignUp = () => {
       const formData = new FormData(e.target);
       const password = formData.get("password");
       try {
-        const res = await axios.post(registerRoute, { username, password },{
-          withCredentials: true // Include credentials in the request
-        });
+        const res = await axios.post(registerRoute, { username, password });
+        const token = res.data.token;
+
+              // Set the token as a cookie
+              document.cookie = `userToken=${token}; Max-Age=3600; Secure; SameSite=None`; 
         if (res.status === 200) {
           setLoginSuccess(res.data.message);
           sendUserData(res.data.otherDetails);
