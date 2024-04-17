@@ -2,13 +2,12 @@ import express from 'express';
 import { userController } from '../Controllers/userController.js';
 import verifyToken from '../middleware/verifyJwtToken.js';
 import upload from '../middleware/multer.js';
-import { corsOptions } from '../index.js';
-const app = express();
+
 const router = express.Router();
 
 router.post('/register', userController.register)
 router.post('/login', userController.login)
-router.patch('/changeAvatar',app.use(cors(corsOptions)),verifyToken,upload.single('dpImage'), userController.changeAvatar)
+router.patch('/changeAvatar',verifyToken,upload.single('dpImage'), userController.changeAvatar)
 router.get('/getUser',verifyToken, userController.getUser)
 
 
