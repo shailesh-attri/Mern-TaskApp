@@ -3,7 +3,8 @@ import {taskModel} from "../Models/task.model.js"
 import { taskRefModel } from "../Models/taskRef.model.js"
 const taskController = {
     createTask : async (req, res)=>{
-        const userId = req.UserID
+        const userId = req.userID
+        console.log("UserId in controller",userId);
         const {taskName, description, deadline} = req.body
         try {
             const user = await userModel.findById(userId)
@@ -33,7 +34,7 @@ const taskController = {
         }
     },
     updateTask : async (req, res)=>{
-        const taskId = req.UserID
+        const taskId = req.params.id
         const {taskName, description, deadline, isCompleted, isImportant} = req.body
         try {
             

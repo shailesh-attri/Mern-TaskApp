@@ -5,7 +5,7 @@ const verifyToken = (req, res, next) => {
         // Extract token from browser cookie
         // const token = req.cookies?.userToken;
         const token = req.headers.authorization?.split(' ')[1];
-        
+        console.log(token);
         if (!token) {
             return res.status(400).json({ message: "Token not found" });
         }
@@ -15,7 +15,7 @@ const verifyToken = (req, res, next) => {
 
         // Attach the decoded user ID to the request object for further use
         req.userID = decoded?.userID;
-
+        console.log("User ID: " + req.userID);
         // Proceed to the next middleware
         next();
     } catch (error) {
