@@ -109,7 +109,7 @@ const userController = {
   
   changeAvatar: async (req, res, next) => {
     try {
-      const userID = req.params.id;
+      const userID = req.userID;
 
       let imageUrl;
       if (req.file) {
