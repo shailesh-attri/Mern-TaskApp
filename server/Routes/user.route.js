@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post('/register', userController.register)
 router.post('/login', userController.login)
-router.patch('/changeAvatar/:id',upload.single('dpImage'), userController.changeAvatar)
+router.patch('/changeAvatar',verifyToken,upload.single('dpImage'), userController.changeAvatar)
 router.get('/getUser',verifyToken, userController.getUser)
 
 
