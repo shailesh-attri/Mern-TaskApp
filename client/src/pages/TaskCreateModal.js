@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createTask } from "../utils/backendApi";
 import axios from "axios";
+import { getCookie } from "./getCookie";
 export const TaskCreateModal = ({ setOpen, isOpen, theme, sendData, thisUser,toggle,setOpenModal }) => {
   
     const [loading, setLoading] = useState(false);
@@ -17,7 +18,13 @@ export const TaskCreateModal = ({ setOpen, isOpen, theme, sendData, thisUser,tog
       setLoading(true);
       try {
         setLoading(false);
-        const res = await axios.post(`${createTask}/${thisUser._id}`, myFormData);
+        const token = getCookie('userToken');
+        
+        const res = await axios.post(createTask, myFormData,{
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
         if (res.status === 200) {
           sendData(res.data);
         }

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { updateTaskRoute } from "../utils/backendApi";
 import axios from "axios";
 import { handleErrorCode } from "../utils/errorCode";
+import { getCookie } from "./getCookie";
 export const TaskEditModal = ({
     setUpdateModal,
     isUpdateModal,
@@ -23,7 +24,12 @@ export const TaskEditModal = ({
       e.preventDefault();
   
     try {
-      const res = await axios.put(`${updateTaskRoute}/${editData._id}`, myFormData);
+      const token = getCookie('userToken');
+      const res = await axios.put(updateTaskRoute, myFormData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       if (res.status === 200) {
         sendData(res.data); // Pass only the message
       }

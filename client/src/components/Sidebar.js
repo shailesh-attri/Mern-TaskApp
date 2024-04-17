@@ -9,6 +9,7 @@ import { changeAvatar } from "../utils/backendApi";
 import axios from "axios";
 import { Oval } from "react-loader-spinner";
 import toast, { Toaster } from "react-hot-toast";
+import { getCookie } from "../pages/getCookie";
 const Sidebar = ({ sendMenu, userData, sendUserData }) => {
   const { theme } = useTheme();
   const [selectedMenu, setSelectedMenu] = useState("All Tasks");
@@ -59,13 +60,14 @@ const Sidebar = ({ sendMenu, userData, sendUserData }) => {
 
         try {
           // Make a request to upload the image using Axios
-          
+          const token = getCookie('userToken');
           const res = await axios.patch(
-            `${changeAvatar}/${userData._id}`,
+            changeAvatar,
             { dpImage: file },
             {
               headers: {
-                "Content-Type": "multipart/form-data", // Use multipart form data
+                "Content-Type": "multipart/form-data",
+                  Authorization: `Bearer ${token}` // Use multipart form data
               },
             }
           );

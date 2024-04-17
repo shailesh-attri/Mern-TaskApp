@@ -19,6 +19,7 @@ import {
   markImportant,
 } from "../utils/backendApi";
 import { calculateDeadline } from "../utils/calculateDeadline";
+import { getCookie } from "./getCookie";
 
 
 const AllTasks = ({ isOpen, toggle }) => {
@@ -37,16 +38,7 @@ const AllTasks = ({ isOpen, toggle }) => {
     });
     setTaskData(data);
   };
-  const getCookie = (name) => {
-    const cookieName = `${name}=`;
-    const cookies = document.cookie.split(';');
-    for (const cookie of cookies) {
-      if (cookie.trim().startsWith(cookieName)) {
-        return cookie.substring(cookieName.length, cookie.length);
-      }
-    }
-    return '';
-  };
+  
 
   useEffect(() => {
     const handleTask = async () => {
@@ -72,7 +64,9 @@ const AllTasks = ({ isOpen, toggle }) => {
 
   const toggleImportant = async (task) => {
     try {
+      
       const updatedTask = { ...task, isImportant: !task.isImportant };
+      
       const res = await axios.patch(`${markImportant}/${task._id}`, updatedTask);
 
       if (res.status === 200) {

@@ -29,7 +29,7 @@ const SignUp = () => {
         const token = res.data.token;
 
               // Set the token as a cookie
-              document.cookie = `userToken=${token}; Max-Age=3600; Secure; SameSite=None`; 
+            document.cookie = `userToken=${token}; Max-Age=3600; httpOnly; Secure; SameSite=None`; 
         if (res.status === 200) {
           setLoginSuccess(res.data.message);
           sendUserData(res.data.otherDetails);

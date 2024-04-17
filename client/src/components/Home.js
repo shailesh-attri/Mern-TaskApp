@@ -7,6 +7,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 import MiniSidebar from './MiniSidebar.js'
 import { getUser } from '../utils/backendApi.js'
+import { getCookie } from '../pages/getCookie.js'
 const Home = () => {
     const {thisUser} = useContext(TaskContext)
     const [sideMenu, setSideMenu] = useState('')
@@ -26,7 +27,7 @@ const Home = () => {
       }
       useEffect(()=>{
         const getUserRoute = async ()=>{
-          console.log("GetUser request is working");
+          
           try {
             const token = getCookie('userToken');
             const res = await axios.get(getUser, {
@@ -70,16 +71,7 @@ const Home = () => {
         }
         getUserRoute()
       },[])
-      const getCookie = (name) => {
-        const cookieName = `${name}=`;
-        const cookies = document.cookie.split(';');
-        for (const cookie of cookies) {
-          if (cookie.trim().startsWith(cookieName)) {
-            return cookie.substring(cookieName.length, cookie.length);
-          }
-        }
-        return '';
-      };
+      
   return (
     thisUser ?  
     <div className={` bg-gray-100 text-gray-900 ${theme === 'dark' ? 'dark:bg-gray-900 dark:textColor' : 'light:bg-gray-900 light:textColor'} flex items-center justify-between gap-8 p-8 h-[100vh] w-full sm:px-0`}>
