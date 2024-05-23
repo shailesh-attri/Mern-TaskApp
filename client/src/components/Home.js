@@ -36,7 +36,7 @@ const Home = () => {
               }
             });
             if (res.status === 200) {
-              console.log(res.data.otherDetails);
+              // console.log(res.data.otherDetails);
               setUserData(res.data.otherDetails);
             } else {
               

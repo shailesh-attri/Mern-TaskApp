@@ -35,7 +35,7 @@ const MainArea = ({ sideMenu, openSidebar }) => {
       </div>
       <div className="grid grid-cols-4 w-full gap-4 overflow-auto  2xl:grid-cols-3 xl:grid-cols-2 lg:grid-cols-1  ">
         {sideMenu.toLowerCase() === "all tasks" && (
-          <AllTasks isOpen={isOpen} toggle={toggle}></AllTasks>
+          <AllTasks isOpen={isOpen} toggle={toggle} ></AllTasks>
         )}
         {sideMenu.toLowerCase() === "important" && (
           <ImportantTask></ImportantTask>

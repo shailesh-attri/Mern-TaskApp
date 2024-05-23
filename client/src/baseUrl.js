@@ -1,5 +1,3 @@
 const dev = 'http://localhost:8000'
-const prod = "https://kind-blue-scallop-wrap.cyclic.app"
+const prod = "https://mern-task-app-7xot.onrender.com/"
 export const baseurl = prod
-
-// https://kind-blue-scallop-wrap.cyclic.app

@@ -104,14 +104,14 @@ const MiniSidebar = ({ sendMenu, userData, sendToggleData,isSidebar}) => {
 
   return (
     
-    <div className={`absolute text-3xl top-0 h-[100vh] left-0 w-[80%] hidden md:block ${
+    <div className={`absolute text-3xl top-0 h-[100vh] left-0 w-[100%] hidden md:block ${
       isSidebar ? "opacity-100" : "opacity-0 pointer-events-none"
     } transition-opacity duration-300`}>
       <Toaster></Toaster>
 
       <div
         className={`relative py-4 flex flex-col items-center justify-between border-2 border-gray-600 w-[15%] 2xl:w-[20%] xl:w-[25%] lg:w-[30%] md:w-[100%]  h-full rounded-r-xl ${
-          theme === "dark" ? "bg-gray-700 bg-opacity-85" : "light:bgPlate"
+          theme === "dark" ? "bg-gray-900 bg-opacity-95" : "light:bgPlate"
         }`}
       >
         <div className="topPanel flex items-center justify-between  w-full px-4">

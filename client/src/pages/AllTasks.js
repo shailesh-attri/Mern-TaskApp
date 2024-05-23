@@ -20,7 +20,7 @@ import {
 } from "../utils/backendApi";
 import { calculateDeadline } from "../utils/calculateDeadline";
 import { getCookie } from "./getCookie";
-
+import Loader from "../utils/Loader";
 
 const AllTasks = ({ isOpen, toggle }) => {
   const { theme } = useTheme();
@@ -29,7 +29,7 @@ const AllTasks = ({ isOpen, toggle }) => {
   const [isUpdateModal, setUpdateModal] = useState(false);
   const [notify, setNotify] = useState({});
   const [taskData, setTaskData] = useState([]);
-
+  const [loading, setLoading] = useState(false);
   const handleData = (data) => {
     console.log(data);
     toast.success(data.message, {
@@ -42,17 +42,18 @@ const AllTasks = ({ isOpen, toggle }) => {
 
   useEffect(() => {
     const handleTask = async () => {
+      setLoading(true)
       try {
-        console.log(getTask);
+        // console.log(getTask);
         const token = getCookie('userToken');
         const res = await axios.get(getTask,{
           headers: {
             Authorization: `Bearer ${token}`
           }
         })
-        console.log(res);
-        if(res.status === 200){
-          
+        // console.log(res);
+        if(res.status === 200){  
+          setLoading(false)
           sendTaskData(res.data.userTask.allTask);
         }
       } catch (error) {
@@ -129,6 +130,7 @@ const AllTasks = ({ isOpen, toggle }) => {
   
 
   return (
+    !loading ? ( 
     <>
       <Toaster
         position="top-center"
@@ -245,6 +247,9 @@ const AllTasks = ({ isOpen, toggle }) => {
         />
       )}
     </>
+    )
+    :
+    <Loader></Loader>
   );
 };
 

@@ -21,11 +21,11 @@ const TaskContextProvider = ({children}) =>{
     }
     const sendTaskData = (data)=>{
         setUserTask(data)
-        console.log(userTask);
+        // console.log(userTask);
     }
     const sendModalData = (data)=>{
         setModalTaskData(data)
-        console.log(data);
+        // console.log(data);
     }
 
     return(
