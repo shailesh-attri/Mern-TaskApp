@@ -30,9 +30,7 @@ app.use(cookieParser());
 const PORT = process.env.PORT || 5000;
 const mongoDbConnection = async () => {
   try {
-    const connectionInstance = await mongoose.connect("mongodb+srv://task_app:taskapp123@taskapp.ognjt3z.mongodb.net/TaskApp", {
-      dbName: "TaskApp",
-    });
+    const connectionInstance = await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected successfully");
     console.log("MongoDb Host ID: " + connectionInstance.connection.host);
   } catch (error) {
