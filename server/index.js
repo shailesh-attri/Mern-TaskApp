@@ -9,7 +9,7 @@ import taskRefRoute from "./Routes/taskRef.route.js";
 import bodyParser from 'body-parser';
 const app = express();
 
-
+dotenv.config()
 
 // Set up CORS globally for all routes
 
