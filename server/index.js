@@ -15,16 +15,15 @@ const app = express();
 
 
 const corsOptions = {
-  origin: '*', // Allow all origins
+  origin: ['https://mern-task-app-gamma.vercel.app', 'http://localhost:3000', "https://cloudinary.com", ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  credentials: true // Set credentials to true only if needed
+  credentials: true // Set credentials to true only in production
 };
-
 
 app.use(cors(corsOptions));
 
 // Other middleware and routes
-app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
