@@ -9,18 +9,19 @@ import taskRefRoute from "./Routes/taskRef.route.js";
 import bodyParser from 'body-parser';
 const app = express();
 
-dotenv.config()
+
 
 // Set up CORS globally for all routes
 
 
-// const corsOptions = {
-//   origin: ['https://mern-task-app-gamma.vercel.app', 'http://localhost:3000', "https://cloudinary.com"],
-//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-//   credentials: true // Set credentials to true only in production
-// };
+const corsOptions = {
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  credentials: true // Set credentials to true only if needed
+};
 
-app.use(cors());
+
+app.use(cors(corsOptions));
 
 // Other middleware and routes
 app.use(bodyParser.json({ limit: '50mb' }));
@@ -29,8 +30,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 const PORT = process.env.PORT || 5000;
 const mongoDbConnection = async () => {
+
   try {
-    const connectionInstance = await mongoose.connect(process.env.MONGODB_URI);
+    const connectionInstance = await mongoose.connect("mongodb+srv://task_app:taskapp123@taskapp.ognjt3z.mongodb.net/TaskApp", {
+      dbName: "TaskApp",
+    });
     console.log("MongoDB connected successfully");
     console.log("MongoDb Host ID: " + connectionInstance.connection.host);
   } catch (error) {
