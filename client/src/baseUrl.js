@@ -1,3 +1,3 @@
 const dev = 'http://localhost:8000'
-const prod = "https://task-app-server-zeta.vercel.app"
+const prod = "http://154.201.126.240"
 export const baseurl = prod
