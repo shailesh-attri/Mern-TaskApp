@@ -1,3 +1,3 @@
 const dev = 'http://localhost:8000'
-const prod = "http://154.201.126.240"
+const prod = "https://backend-task-app.duckdns.org"
 export const baseurl = prod
