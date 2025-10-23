@@ -2,25 +2,39 @@ import { userModel } from "../Models/user.model.js";
 import { taskRefModel } from "../Models/taskRef.model.js";
 const taskRefController = {
   getTask: async (req, res) => {
-    const userId = req.userID
+    const userId = req.userID;
+
     try {
-      const currentUser = await taskRefModel.findOne({ creator: userId });
-      if (!currentUser) {
-        return res.status(404).send({ message: "user not found" }); // Use return to stop execution here
-      }
-      const userTask = await currentUser
+      const userTask = await taskRefModel
+        .findOne({ creator: userId })
         .populate({
           path: "allTask",
-          options: { sort: { createdAt: -1 } }, // Sort allTask documents by createdAt in descending order
-        })
-        
-      return res.status(200).json({ userTask }); // Use return to stop execution here
+          options: { sort: { createdAt: -1 } },
+        });
+
+      // 🟡 If no user doc found, return empty structure
+      if (!userTask) {
+        return res.status(200).json({
+          userTask: {
+            _id: null,
+            creator: userId,
+            allTask: [],
+            message: "No taskRef found for this user",
+          },
+        });
+      }
+
+      // ✅ Return same structure as your expected response
+      return res.status(200).json({ userTask });
     } catch (error) {
-      console.log("Internal server error: " + error);
-      return res
-        .status(500)
-        .send({ message: "Internal server error: ", error: error.message }); // Use return to stop execution here
+      console.error("❌ Internal server error:", error);
+      return res.status(500).json({
+        message: "Internal server error",
+        error: error.message,
+      });
     }
   },
 };
+
 export { taskRefController };
+
